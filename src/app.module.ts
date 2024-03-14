@@ -27,7 +27,7 @@ import { User } from './user/entities/user.entity';
         const graphQLFormattedError = {
           message:
             error.extensions?.exception?.response?.message || error.message,
-          code: error.extensions?.code || 'SERVER_ERROR',
+          code: error.extensions?.code || 'Internal server error',
           name: error.extensions?.exception?.name || error.name,
         };
         return graphQLFormattedError;

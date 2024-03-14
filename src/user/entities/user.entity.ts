@@ -4,6 +4,7 @@ import {
   Column,
   // CreateDateColumn,
   Entity,
+  PrimaryGeneratedColumn,
   Timestamp,
   Unique,
   // UpdateDateColumn,
@@ -12,6 +13,9 @@ import {
 @Entity()
 @ObjectType()
 export class User extends CommonBaseEntity {
+  @Field()
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
   @Column()
   @Field()
   firstName: string;
