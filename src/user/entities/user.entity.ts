@@ -5,11 +5,12 @@ import {
   // CreateDateColumn,
   Entity,
   Timestamp,
+  Unique,
   // UpdateDateColumn,
 } from 'typeorm';
 
-@ObjectType()
 @Entity()
+@ObjectType()
 export class User extends CommonBaseEntity {
   @Column()
   @Field()
@@ -20,12 +21,10 @@ export class User extends CommonBaseEntity {
   lastName: string;
 
   @Column()
+  @Field()
   email: string;
 
   @Column({ nullable: true })
-  password: string;
-
-  @Column({ nullable: true })
   @Field()
-  phoneNumber: string;
+  password: string;
 }
