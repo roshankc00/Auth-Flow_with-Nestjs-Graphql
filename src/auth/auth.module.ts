@@ -10,6 +10,7 @@ import { UserService } from 'src/user/user.service';
 import { LocalStrategy } from './strategies/local.strategy';
 import 'dotenv/config';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import { GoogleStrategy } from './strategies/google.auth.strategy';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     UserService,
     LocalStrategy,
     JwtStrategy,
+    GoogleStrategy,
   ],
 })
 export class AuthModule {}

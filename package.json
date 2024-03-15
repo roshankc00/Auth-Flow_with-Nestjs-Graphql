@@ -38,6 +38,8 @@
     "graphql": "^16.8.1",
     "mysql2": "^3.9.2",
     "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-google-token": "^0.1.2",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
     "reflect-metadata": "^0.2.0",

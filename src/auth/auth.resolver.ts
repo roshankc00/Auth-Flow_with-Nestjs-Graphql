@@ -4,6 +4,8 @@ import { LoginResponse } from './types/auth.types';
 import { UseGuards } from '@nestjs/common';
 import { NormalLoginDto } from './dto/normalLogin.dto';
 import { GqlAuthGuard } from './guards/gql.auth.guard';
+import { AuthGuard } from '@nestjs/passport';
+import { SocialAuthGuard } from './guards/google-auth-guard';
 
 @Resolver()
 export class AuthResolver {
@@ -16,5 +18,11 @@ export class AuthResolver {
     @Context() context,
   ) {
     return this.authService.loginUser(context.user);
+  }
+
+  @Mutation(() => LoginResponse)
+  @UseGuards(SocialAuthGuard)
+  async LoginWithGoogle(@Context() context) {
+    return this.authService.loginUser(context.profile);
   }
 }
