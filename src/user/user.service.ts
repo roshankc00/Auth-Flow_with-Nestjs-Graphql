@@ -35,12 +35,13 @@ export class UserService {
       lastName,
     });
 
-    return newUser;
+    return this.userRepository.save(newUser);
   }
 
   async findAll() {
-    const users = await this.userRepository.find();
-    console.log(users);
+    const users = await this.userRepository.find({
+      where: { isDeleted: false },
+    });
     return users;
   }
 
@@ -48,6 +49,7 @@ export class UserService {
     const user = await this.userRepository.findOne({
       where: {
         id,
+        isDeleted: false,
       },
     });
 

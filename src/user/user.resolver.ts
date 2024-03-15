@@ -8,22 +8,24 @@ export class UserResolver {
   constructor(private readonly userService: UserService) {}
 
   @Mutation(() => User)
-  createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
+  createUser(
+    @Args('createUserInput') createUserInput: CreateUserInput,
+  ): Promise<User> {
     return this.userService.create(createUserInput);
   }
 
   @Query(() => [User], { name: 'users' })
-  findAll() {
-    this.userService.findAll();
+  findAll(): Promise<User[] | []> {
+    return this.userService.findAll();
   }
 
   @Query(() => User, { name: 'user' })
-  findOne(@Args('userid') id: string) {
+  findOne(@Args('userid') id: string): Promise<User> {
     return this.userService.findOne(id);
   }
 
   @Mutation(() => User)
-  removeUser(@Args('userid') id: string) {
+  removeUser(@Args('userid') id: string): Promise<User> {
     return this.userService.remove(id);
   }
 }
