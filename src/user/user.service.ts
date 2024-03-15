@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Injectable,
   NotFoundException,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateUserInput } from './dto/create-user.input';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -24,7 +25,7 @@ export class UserService {
     });
 
     if (user) {
-      throw new BadRequestException('User with this id doesnt exists');
+      throw new BadRequestException('User with this email already exists');
     }
     const hashedPassword = await bcrypt.hash(password, 10);
 

@@ -2,6 +2,8 @@ import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { UserService } from './user.service';
 import { User } from './entities/user.entity';
 import { CreateUserInput } from './dto/create-user.input';
+import { JwtAuthGuard } from 'src/auth/guards/jwt.auth.guard';
+import { UseGuards } from '@nestjs/common';
 
 @Resolver(() => User)
 export class UserResolver {
@@ -20,6 +22,7 @@ export class UserResolver {
   }
 
   @Query(() => User, { name: 'user' })
+  @UseGuards(JwtAuthGuard)
   findOne(@Args('userid') id: string): Promise<User> {
     return this.userService.findOne(id);
   }
